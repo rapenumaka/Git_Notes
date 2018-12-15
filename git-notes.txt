@@ -1,0 +1,230 @@
+----------------------- Mastering Git----------------------------
+>>>>>>>>>>>>>>>>>>> Module-1 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+//https://www.atlassian.com/git/tutorials/undoing-changes
+
+********************Chapter-1************************************
+$git --help
+$git init
+
+# Contents in .git folder
+  hooks, info, objects, refs
+  config, description, HEAD
+# Creating a file with contents 
+$echo Git Rocks Raja !! > MyFile.txt
+
+#Getting the status of repository
+$git status
+
+# git add tells git to track the files 
+$ git add MyFile.txt
+
+#Adding all the files 
+
+$git add --all 
+$git add -ADD
+$git add .
+
+# Adding a pattern of all the files say .txt
+
+$ git add *.txt
+
+# Commit to git with a message 
+
+$ git commit --message "My First new commit, hooray!!"
+              or 
+$ git commit --m "My First new commit, hooray!!"
+
+********************Chapter-2************************************
+ # To create a file 
+$touch mFile.txt
+
+Now to revert the changes using RESET
+$ git reset HEAD mFile.txt
+
+# Opposite of the ADD command is RM -- cached , once we 
+# use this command the file becomes untracked 
+
+$  rm --cached <file or folder> 
+
+# View the history of commits 
+
+$ git log
+
+# View the config imformation alias 
+
+$ git config --list
+
+# Creating a gitignore file 
+
+$ touch .gitignore
+$ git add .gitignore
+
+# Adding the file to git even if it configured to be ignored in gitignore 
+
+$ git add -f (--force)
+
+# Tag is like milestone for the commits 
+
+$ git tag -a MyTagName -m "This is the first tag"
+
+# To display the tag 
+$ git tag 
+
+# To get the branches 
+$ git branch
+
+# To Create a new branch "Feature_101"
+$ git branch Feature_101
+
+# Git always creates the branch out of master 
+# After checking out , Git will assign the pointer to this new Branch 
+$ git checkout Feature_101
+$ git branch
+
+# If you want the git log to be pretty 
+
+$ git log --graph --decorate --pretty=oneline --abbrev-commit 
+
+# If you want to save this command as alias "logger" in git config 
+
+$ git config --global alias.logger 'log --graph --decorate --pretty=oneline --abbrev-commit' 
+ # we can simply use 
+$ git logger
+
+# Three levels of personlization 
+
+repository level  => only for that respository
+global level => specifc to the user 
+system level => For all the users and all repositories 
+
+# to Merge the changes to Master branch 
+# 1. Checkout to the master branch
+$ git checkout -  
+# 2. Then use merge commmand 
+$ git merge newYork
+
+# Adding and commiting in git 
+
+$ git commit -a -m " modifying the file on master branch"
+ 
+# To see the difference between branches 
+$ git diff <branch-1>..<branch-2>
+$ git diff master.. modify
+
+
+# Git stashing 
+# to create a stash from a master branch 
+$ git stash 
+
+# Getting the list of stash 
+
+$ git stash list
+
+
+********************Chapter-3************************************
+Working with remote repositories
+
+# To clone a remote repository
+
+$ git clone https://github.com/prjvnd/Threading.git
+
+# After adding and commiting .. push the changes to the remote repositories
+$ git push 
+
+# To see the remote urls 
+
+$ git remote -v
+
+# Creating a new Branch and checking that out locally 
+
+$ git checkout -b concurrent
+
+# After making the changes you can create push this branch "concurrent", that will create 
+# a remote branch "concurrent" 
+$ git push -u origin <branch-name-to-be-create>
+$ git push -u origin concurrent
+
+# What is the difference between git pull, git fetch and git merge 
+
+$ In the simplest terms, git pull does a git fetch followed by a git merge
+PULL = FETCH +MERGE
+# Update the local repository with remote branch 
+
+$ git pull 
+
+# Pull the remote branch "develop" 
+
+$ git pull origin <branch-name>
+$ git pull origin develop 
+$ git pull origin feature_FM_123
+
+Once you make changes in feature_FM_123 and committed all your changes 
+
+Simple push this to that branch 
+
+$ git push origin feature_FM_123
+
+# After that you can merge your changes using the Web UI 
+
+---- Addling the local repositroy to remote 
+Step -1 : Create a repository local and commit all the changes 
+$ git init
+$ git add .
+$ git commit - m "Your message"
+
+Step -2 : Add the git url 
+$ git remote add origin https://github.com/prjvnd/Algorithms.git
+
+Step- 3 : Push the changes 
+# First commmit will always be to the master 
+
+$ git push -u origin master 
+
+--- All your code is now in remote repository---
+
+
+# Forking 
+
+$ git remote add upstream http://github.com/actocat/spoon-fork
+$ git remote -v
+
+
+Now, you can keep your local repository in sync with the changes in
+your remote and the origin alias. You can also get changes ones coming
+from the upstream remote, the original repository you forked. At this
+point, you are probably wondering how to deal with two different
+remotes. Well, it is easy. Simply pull from upstream and merge those
+modifications in your local repository. Then, push them in your origin
+remote in addition to your changes. If someone else clones your
+repository, they would receive your work merged with the work done by
+someone else on the original repository.
+
+******************************* Git Tools ***************************
+ Short SHA-1 and Partial SHA 
+ 
+ $git log 
+ This will show the logging information 
+ 
+ $ git show <commit-sha-1>
+ $ git show 763452aa345kjkasq3564256asdfjj6356
+ $ git show 763452aa
+  If you want the commit SHA to be abbreviated 
+ 
+ $ git log --abbrev-commit --pretty=oneline
+ 
+ ------- Git Reflog -----------------
+  
+  A reflog - a log of where your head and branch refrences have 
+  been for the last few months 
+ 
+ $ git reflog
+
+ ---- Ancestory References -----------
+ The other main way to specify a commit is via its ancestry
+ $ git log --pretty=format:'%h %s' --graph
+
+ To see the previous commit by specifying the HEAD^
+$ git show HEAD^ 
+ 
+
+
