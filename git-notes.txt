@@ -226,5 +226,6 @@ someone else on the original repository.
  To see the previous commit by specifying the HEAD^
 $ git show HEAD^ 
  
-
+__________________________________
+You can easily do this by source Tree
 
